@@ -1,0 +1,20 @@
+# Directories
+node_modules/
+dist/
+
+# Environment files
+.env
+
+# Editor and IDE files
+.vscode/
+.idea/
+*.swp
+
+# Build artifacts
+*.log
+*.log.*
+npm-debug.log*
+
+# Miscellaneous
+.DS_Store
+Thumbs.db
