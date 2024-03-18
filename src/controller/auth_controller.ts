@@ -3,7 +3,6 @@ import prisma from "../lib/prisma";
 import bcrypt from "bcrypt";
 import { generate_jwt } from "../utils/jwt_utils";
 import Joi from "joi";
-import { abort } from "process";
 
 const login_schema = Joi.object({
   email: Joi.string().email().required(),
@@ -59,7 +58,6 @@ export default {
       res.status(200).json({
         ...other,
         access_token,
-        name,
       });
     } catch (error) {
       console.log(error);

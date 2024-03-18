@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { verify_jwt } from "../utils/jwt_utils";
+import { JsonWebTokenError, TokenExpiredError } from "jsonwebtoken";
 
 export default (req: Request, res: Response, next: NextFunction) => {
   const { authorization } = req.headers;
@@ -12,14 +13,18 @@ export default (req: Request, res: Response, next: NextFunction) => {
   }
 
   try {
-    const isValid = verify_jwt(token);
-    if (!isValid) {
-      return res.status(401).json({
-        message: "Invalid Access Token",
-      });
-    }
+    verify_jwt(token);
     next();
   } catch (error) {
-    res.status(500).json({ message: "Something Went Wrong!" });
+    if (
+      error instanceof TokenExpiredError ||
+      error instanceof JsonWebTokenError
+    ) {
+      res.status(401).json({
+        error: "Token is expired or invalid",
+      });
+    } else {
+      res.status(500).json({ message: "Something Went Wrong!" });
+    }
   }
 };
