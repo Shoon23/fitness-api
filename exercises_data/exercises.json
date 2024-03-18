@@ -23,7 +23,7 @@
     "barbell",
     "dumbbell",
     "other",
-    "body only",
+    "calisthenics",
     "cable",
     "machine",
     "kettlebells",
@@ -39,7 +39,7 @@
       "force": "pull",
       "level": "beginner",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["abdominals"],
       "secondaryMuscles": [],
       "instructions": [
@@ -58,7 +58,7 @@
       "force": "push",
       "level": "beginner",
       "mechanic": null,
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["hamstrings"],
       "secondaryMuscles": ["calves"],
       "instructions": [
@@ -168,7 +168,7 @@
       "force": "pull",
       "level": "beginner",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["abdominals"],
       "secondaryMuscles": [],
       "instructions": [
@@ -188,7 +188,7 @@
       "force": "static",
       "level": "intermediate",
       "mechanic": null,
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["quadriceps"],
       "secondaryMuscles": ["quadriceps"],
       "instructions": [
@@ -228,7 +228,7 @@
       "force": "pull",
       "level": "beginner",
       "mechanic": "isolation",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["abdominals"],
       "secondaryMuscles": [],
       "instructions": [
@@ -1444,7 +1444,7 @@
       "force": "push",
       "level": "beginner",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["triceps"],
       "secondaryMuscles": ["chest", "shoulders"],
       "instructions": [
@@ -1462,7 +1462,7 @@
       "force": "push",
       "level": "intermediate",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["quadriceps"],
       "secondaryMuscles": ["calves", "glutes", "hamstrings"],
       "instructions": [
@@ -1610,7 +1610,7 @@
       "force": "pull",
       "level": "beginner",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["abdominals"],
       "secondaryMuscles": [],
       "instructions": [
@@ -1852,7 +1852,7 @@
       "force": "push",
       "level": "intermediate",
       "mechanic": "isolation",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["triceps"],
       "secondaryMuscles": ["abdominals", "forearms"],
       "instructions": [
@@ -1870,7 +1870,7 @@
       "force": "push",
       "level": "beginner",
       "mechanic": "isolation",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["triceps"],
       "secondaryMuscles": [],
       "instructions": [
@@ -1925,7 +1925,7 @@
       "force": "push",
       "level": "beginner",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["quadriceps"],
       "secondaryMuscles": ["glutes", "hamstrings"],
       "instructions": [
@@ -2009,7 +2009,7 @@
       "force": "pull",
       "level": "beginner",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["abdominals"],
       "secondaryMuscles": [],
       "instructions": [
@@ -2191,7 +2191,7 @@
       "force": "pull",
       "level": "beginner",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["abdominals"],
       "secondaryMuscles": [],
       "instructions": [
@@ -2210,7 +2210,7 @@
       "force": "push",
       "level": "beginner",
       "mechanic": "isolation",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["glutes"],
       "secondaryMuscles": ["hamstrings"],
       "instructions": [
@@ -3258,7 +3258,7 @@
       "force": "pull",
       "level": "beginner",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["lats"],
       "secondaryMuscles": ["biceps", "forearms", "middle back"],
       "instructions": [
@@ -3495,7 +3495,7 @@
       "force": "push",
       "level": "intermediate",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["chest"],
       "secondaryMuscles": ["shoulders", "triceps"],
       "instructions": [
@@ -3648,7 +3648,7 @@
       "force": "push",
       "level": "intermediate",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["triceps"],
       "secondaryMuscles": ["abdominals", "chest", "shoulders"],
       "instructions": [
@@ -3691,7 +3691,7 @@
       "force": "pull",
       "level": "beginner",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["abdominals"],
       "secondaryMuscles": [],
       "instructions": [
@@ -3751,7 +3751,7 @@
       "force": "pull",
       "level": "beginner",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["abdominals"],
       "secondaryMuscles": [],
       "instructions": [
@@ -3856,7 +3856,7 @@
       "force": "pull",
       "level": "beginner",
       "mechanic": "isolation",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["abdominals"],
       "secondaryMuscles": [],
       "instructions": [
@@ -3878,7 +3878,7 @@
       "force": "pull",
       "level": "beginner",
       "mechanic": "isolation",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["abdominals"],
       "secondaryMuscles": [],
       "instructions": [
@@ -3902,7 +3902,7 @@
       "force": "pull",
       "level": "beginner",
       "mechanic": "isolation",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["abdominals"],
       "secondaryMuscles": [],
       "instructions": [
@@ -3959,7 +3959,7 @@
       "force": "pull",
       "level": "beginner",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["abdominals"],
       "secondaryMuscles": [],
       "instructions": [
@@ -4076,7 +4076,7 @@
       "force": "pull",
       "level": "intermediate",
       "mechanic": "isolation",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["abdominals"],
       "secondaryMuscles": [],
       "instructions": [
@@ -4185,7 +4185,7 @@
       "force": "pull",
       "level": "beginner",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["abdominals"],
       "secondaryMuscles": [],
       "instructions": [
@@ -4226,7 +4226,7 @@
       "force": "pull",
       "level": "beginner",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["abdominals"],
       "secondaryMuscles": [],
       "instructions": [
@@ -4352,7 +4352,7 @@
       "force": "push",
       "level": "beginner",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["triceps"],
       "secondaryMuscles": ["chest", "shoulders"],
       "instructions": [
@@ -4505,7 +4505,7 @@
       "force": "push",
       "level": "beginner",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["quadriceps"],
       "secondaryMuscles": [
         "abductors",
@@ -5287,7 +5287,7 @@
       "force": "pull",
       "level": "beginner",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["abdominals"],
       "secondaryMuscles": [],
       "instructions": [
@@ -5535,7 +5535,7 @@
       "force": "push",
       "level": "beginner",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["quadriceps"],
       "secondaryMuscles": [
         "abductors",
@@ -5600,7 +5600,7 @@
       "force": "pull",
       "level": "beginner",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["abdominals"],
       "secondaryMuscles": [],
       "instructions": [
@@ -5622,7 +5622,7 @@
       "force": "pull",
       "level": "beginner",
       "mechanic": "isolation",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["abdominals"],
       "secondaryMuscles": [],
       "instructions": [
@@ -5722,7 +5722,7 @@
       "force": "pull",
       "level": "beginner",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["glutes"],
       "secondaryMuscles": ["hamstrings"],
       "instructions": [
@@ -5801,7 +5801,7 @@
       "force": "push",
       "level": "intermediate",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["quadriceps"],
       "secondaryMuscles": ["calves", "glutes", "hamstrings"],
       "instructions": [
@@ -5837,7 +5837,7 @@
       "force": "pull",
       "level": "intermediate",
       "mechanic": "isolation",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["abdominals"],
       "secondaryMuscles": [],
       "instructions": [
@@ -6012,7 +6012,7 @@
       "force": "pull",
       "level": "beginner",
       "mechanic": null,
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["hamstrings"],
       "secondaryMuscles": [],
       "instructions": [
@@ -6186,7 +6186,7 @@
       "force": "push",
       "level": "beginner",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["glutes"],
       "secondaryMuscles": ["hamstrings"],
       "instructions": [
@@ -6254,7 +6254,7 @@
       "force": "pull",
       "level": "intermediate",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["abdominals"],
       "secondaryMuscles": ["biceps", "lats"],
       "instructions": [
@@ -6293,7 +6293,7 @@
       "force": "pull",
       "level": "intermediate",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["adductors"],
       "secondaryMuscles": [],
       "instructions": [
@@ -6408,7 +6408,7 @@
       "force": "push",
       "level": "expert",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["shoulders"],
       "secondaryMuscles": ["triceps"],
       "instructions": [
@@ -6559,7 +6559,7 @@
       "force": "pull",
       "level": "expert",
       "mechanic": "isolation",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["abdominals"],
       "secondaryMuscles": [],
       "instructions": [
@@ -6577,7 +6577,7 @@
       "force": "pull",
       "level": "expert",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["abdominals"],
       "secondaryMuscles": [],
       "instructions": [
@@ -6658,7 +6658,7 @@
       "force": "pull",
       "level": "beginner",
       "mechanic": "isolation",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["abductors"],
       "secondaryMuscles": ["adductors"],
       "instructions": [
@@ -6813,7 +6813,7 @@
       "force": "pull",
       "level": "intermediate",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["lower back"],
       "secondaryMuscles": ["glutes", "hamstrings"],
       "instructions": [
@@ -6871,7 +6871,7 @@
       "force": null,
       "level": "beginner",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["hamstrings"],
       "secondaryMuscles": [],
       "instructions": [
@@ -7125,7 +7125,7 @@
       "force": "push",
       "level": "beginner",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["chest"],
       "secondaryMuscles": ["shoulders", "triceps"],
       "instructions": [
@@ -7142,7 +7142,7 @@
       "force": "push",
       "level": "beginner",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["triceps"],
       "secondaryMuscles": ["chest", "shoulders"],
       "instructions": [
@@ -7185,7 +7185,7 @@
       "force": "push",
       "level": "beginner",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["chest"],
       "secondaryMuscles": ["abdominals", "shoulders", "triceps"],
       "instructions": [
@@ -7207,7 +7207,7 @@
       "force": "push",
       "level": "beginner",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["chest"],
       "secondaryMuscles": ["abdominals", "shoulders", "triceps"],
       "instructions": [
@@ -7229,7 +7229,7 @@
       "force": "push",
       "level": "beginner",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["chest"],
       "secondaryMuscles": ["abdominals", "shoulders", "triceps"],
       "instructions": [
@@ -7385,7 +7385,7 @@
       "force": "static",
       "level": "beginner",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["chest"],
       "secondaryMuscles": ["shoulders", "triceps"],
       "instructions": [
@@ -7407,7 +7407,7 @@
       "force": "static",
       "level": "beginner",
       "mechanic": "isolation",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["neck"],
       "secondaryMuscles": [],
       "instructions": [
@@ -7429,7 +7429,7 @@
       "force": "static",
       "level": "beginner",
       "mechanic": "isolation",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["neck"],
       "secondaryMuscles": [],
       "instructions": [
@@ -7451,7 +7451,7 @@
       "force": "push",
       "level": "beginner",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["chest"],
       "secondaryMuscles": ["abdominals", "shoulders", "triceps"],
       "instructions": [
@@ -7488,7 +7488,7 @@
       "force": "pull",
       "level": "beginner",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["abdominals"],
       "secondaryMuscles": [],
       "instructions": [
@@ -7506,7 +7506,7 @@
       "force": "pull",
       "level": "beginner",
       "mechanic": "isolation",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["abdominals"],
       "secondaryMuscles": [],
       "instructions": [
@@ -7981,7 +7981,7 @@
       "force": "pull",
       "level": "beginner",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["calves"],
       "secondaryMuscles": ["hamstrings", "quadriceps"],
       "instructions": [
@@ -8020,7 +8020,7 @@
       "force": "push",
       "level": "beginner",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["hamstrings"],
       "secondaryMuscles": [
         "abductors",
@@ -8270,7 +8270,7 @@
       "force": "push",
       "level": "beginner",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["adductors"],
       "secondaryMuscles": [
         "abductors",
@@ -8436,7 +8436,7 @@
       "force": "push",
       "level": "beginner",
       "mechanic": "isolation",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["glutes"],
       "secondaryMuscles": ["hamstrings"],
       "instructions": [
@@ -8474,7 +8474,7 @@
       "force": "pull",
       "level": "beginner",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["abdominals"],
       "secondaryMuscles": [],
       "instructions": [
@@ -8840,7 +8840,7 @@
       "force": "static",
       "level": "beginner",
       "mechanic": null,
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["abdominals"],
       "secondaryMuscles": [],
       "instructions": [
@@ -9019,7 +9019,7 @@
       "force": "static",
       "level": "expert",
       "mechanic": null,
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["abductors"],
       "secondaryMuscles": [],
       "instructions": [
@@ -9100,7 +9100,7 @@
       "force": "static",
       "level": "expert",
       "mechanic": null,
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["glutes"],
       "secondaryMuscles": ["abductors"],
       "instructions": [
@@ -9216,7 +9216,7 @@
       "force": null,
       "level": "expert",
       "mechanic": null,
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["quadriceps"],
       "secondaryMuscles": [],
       "instructions": [
@@ -9702,7 +9702,7 @@
       "force": "pull",
       "level": "intermediate",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["hamstrings"],
       "secondaryMuscles": ["calves", "glutes", "lower back"],
       "instructions": [
@@ -9758,7 +9758,7 @@
       "force": "pull",
       "level": "beginner",
       "mechanic": "isolation",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["abdominals"],
       "secondaryMuscles": [],
       "instructions": [
@@ -9779,7 +9779,7 @@
       "force": "pull",
       "level": "beginner",
       "mechanic": "isolation",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["abdominals"],
       "secondaryMuscles": [],
       "instructions": [
@@ -10733,7 +10733,7 @@
       "force": "static",
       "level": "expert",
       "mechanic": null,
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["triceps"],
       "secondaryMuscles": ["lats"],
       "instructions": [
@@ -11021,7 +11021,7 @@
       "force": "static",
       "level": "beginner",
       "mechanic": "isolation",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["abdominals"],
       "secondaryMuscles": [],
       "instructions": [
@@ -11135,7 +11135,7 @@
       "force": "push",
       "level": "beginner",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["chest"],
       "secondaryMuscles": ["shoulders", "triceps"],
       "instructions": [
@@ -11490,7 +11490,7 @@
       "force": "pull",
       "level": "beginner",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["lats"],
       "secondaryMuscles": ["biceps", "middle back"],
       "instructions": [
@@ -11509,7 +11509,7 @@
       "force": null,
       "level": "beginner",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["chest"],
       "secondaryMuscles": ["abdominals", "shoulders", "triceps"],
       "instructions": [
@@ -11527,7 +11527,7 @@
       "force": "push",
       "level": "intermediate",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["triceps"],
       "secondaryMuscles": ["chest", "shoulders"],
       "instructions": [
@@ -11548,7 +11548,7 @@
       "force": "push",
       "level": "beginner",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["chest"],
       "secondaryMuscles": ["shoulders", "triceps"],
       "instructions": [
@@ -11625,7 +11625,7 @@
       "force": "push",
       "level": "beginner",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["chest"],
       "secondaryMuscles": ["abdominals", "shoulders", "triceps"],
       "instructions": [
@@ -11644,7 +11644,7 @@
       "force": "push",
       "level": "beginner",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["chest"],
       "secondaryMuscles": ["shoulders", "triceps"],
       "instructions": [
@@ -11662,7 +11662,7 @@
       "force": "push",
       "level": "beginner",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["chest"],
       "secondaryMuscles": ["shoulders", "triceps"],
       "instructions": [
@@ -11806,7 +11806,7 @@
       "force": "push",
       "level": "beginner",
       "mechanic": null,
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["quadriceps"],
       "secondaryMuscles": [],
       "instructions": [
@@ -12059,7 +12059,7 @@
       "force": "pull",
       "level": "beginner",
       "mechanic": "isolation",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["abdominals"],
       "secondaryMuscles": [],
       "instructions": [
@@ -12328,7 +12328,7 @@
       "force": "push",
       "level": "beginner",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["quadriceps"],
       "secondaryMuscles": ["calves", "hamstrings"],
       "instructions": [
@@ -12584,7 +12584,7 @@
       "force": "pull",
       "level": "intermediate",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["abdominals"],
       "secondaryMuscles": ["lower back"],
       "instructions": [
@@ -12649,7 +12649,7 @@
       "force": "pull",
       "level": "beginner",
       "mechanic": "isolation",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["abdominals"],
       "secondaryMuscles": [],
       "instructions": [
@@ -12668,7 +12668,7 @@
       "force": "push",
       "level": "beginner",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["quadriceps"],
       "secondaryMuscles": ["glutes", "hamstrings"],
       "instructions": [
@@ -12819,7 +12819,7 @@
       "force": "static",
       "level": "expert",
       "mechanic": "isolation",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["biceps"],
       "secondaryMuscles": ["chest", "shoulders"],
       "instructions": [
@@ -13046,7 +13046,7 @@
       "force": "pull",
       "level": "beginner",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["abdominals"],
       "secondaryMuscles": [],
       "instructions": [
@@ -13086,7 +13086,7 @@
       "force": "static",
       "level": "expert",
       "mechanic": null,
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["shoulders"],
       "secondaryMuscles": ["chest"],
       "instructions": [
@@ -13103,7 +13103,7 @@
       "force": "static",
       "level": "expert",
       "mechanic": null,
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["glutes"],
       "secondaryMuscles": ["adductors"],
       "instructions": [
@@ -13216,7 +13216,7 @@
       "force": "pull",
       "level": "beginner",
       "mechanic": "isolation",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["abdominals"],
       "secondaryMuscles": [],
       "instructions": [
@@ -13558,7 +13558,7 @@
       "force": "static",
       "level": "beginner",
       "mechanic": null,
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["abdominals"],
       "secondaryMuscles": ["shoulders"],
       "instructions": [],
@@ -13588,7 +13588,7 @@
       "force": "pull",
       "level": "beginner",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["abdominals"],
       "secondaryMuscles": [],
       "instructions": [],
@@ -13642,7 +13642,7 @@
       "force": "pull",
       "level": "beginner",
       "mechanic": null,
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["adductors"],
       "secondaryMuscles": [],
       "instructions": [
@@ -13815,7 +13815,7 @@
       "force": "push",
       "level": "intermediate",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["chest"],
       "secondaryMuscles": ["shoulders", "triceps"],
       "instructions": [
@@ -13973,7 +13973,7 @@
       "force": "push",
       "level": "beginner",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["quadriceps"],
       "secondaryMuscles": ["calves", "hamstrings"],
       "instructions": [
@@ -13991,7 +13991,7 @@
       "force": "push",
       "level": "beginner",
       "mechanic": "isolation",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["glutes"],
       "secondaryMuscles": ["hamstrings"],
       "instructions": [
@@ -14029,7 +14029,7 @@
       "force": "pull",
       "level": "beginner",
       "mechanic": "isolation",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["abdominals"],
       "secondaryMuscles": [],
       "instructions": [
@@ -14874,7 +14874,7 @@
       "force": "pull",
       "level": "beginner",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["abdominals"],
       "secondaryMuscles": ["chest", "shoulders", "triceps"],
       "instructions": [
@@ -14976,7 +14976,7 @@
       "force": "push",
       "level": "beginner",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["quadriceps"],
       "secondaryMuscles": ["calves", "glutes", "hamstrings"],
       "instructions": [
@@ -15691,7 +15691,7 @@
       "force": "pull",
       "level": "beginner",
       "mechanic": "isolation",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["abductors"],
       "secondaryMuscles": ["adductors"],
       "instructions": [
@@ -15789,7 +15789,7 @@
       "force": "push",
       "level": "beginner",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["quadriceps"],
       "secondaryMuscles": ["calves", "glutes", "hamstrings"],
       "instructions": [
@@ -16125,7 +16125,7 @@
       "force": "push",
       "level": "beginner",
       "mechanic": "isolation",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["triceps"],
       "secondaryMuscles": [],
       "instructions": [
@@ -16166,7 +16166,7 @@
       "force": "push",
       "level": "beginner",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["quadriceps"],
       "secondaryMuscles": ["calves", "glutes", "hamstrings", "shoulders"],
       "instructions": [
@@ -16183,7 +16183,7 @@
       "force": "push",
       "level": "beginner",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["glutes"],
       "secondaryMuscles": ["hamstrings", "quadriceps"],
       "instructions": [
@@ -16286,7 +16286,7 @@
       "force": "static",
       "level": "beginner",
       "mechanic": "isolation",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["abdominals"],
       "secondaryMuscles": [],
       "instructions": [
@@ -16493,7 +16493,7 @@
       "force": "static",
       "level": "beginner",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["lower back"],
       "secondaryMuscles": ["glutes", "hamstrings"],
       "instructions": [
@@ -16804,7 +16804,7 @@
       "force": "pull",
       "level": "beginner",
       "mechanic": "isolation",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["abdominals"],
       "secondaryMuscles": [],
       "instructions": [
@@ -17009,7 +17009,7 @@
       "force": "pull",
       "level": "beginner",
       "mechanic": "isolation",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["abdominals"],
       "secondaryMuscles": [],
       "instructions": [
@@ -17279,7 +17279,7 @@
       "force": "pull",
       "level": "beginner",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["lats"],
       "secondaryMuscles": ["biceps", "middle back", "shoulders"],
       "instructions": [
@@ -17620,7 +17620,7 @@
       "force": "pull",
       "level": "intermediate",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["lats"],
       "secondaryMuscles": ["biceps", "middle back", "shoulders"],
       "instructions": [
@@ -17706,7 +17706,7 @@
       "force": "pull",
       "level": "beginner",
       "mechanic": "compound",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["abdominals"],
       "secondaryMuscles": [],
       "instructions": [
@@ -17761,7 +17761,7 @@
       "force": "pull",
       "level": "beginner",
       "mechanic": "isolation",
-      "equipment": "body only",
+      "equipment": "calisthenics",
       "primaryMuscles": ["forearms"],
       "secondaryMuscles": [],
       "instructions": [

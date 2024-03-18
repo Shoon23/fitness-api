@@ -1,16 +1,16 @@
 import { Request, Response } from "express";
 import prisma from "../lib/prisma";
 import bcrypt from "bcrypt";
-import generate_jwt from "../utils/generate_jwt";
+import { generate_jwt } from "../utils/jwt_utils";
 import Joi from "joi";
 import { abort } from "process";
 
-const loginSchema = Joi.object({
+const login_schema = Joi.object({
   email: Joi.string().email().required(),
   password: Joi.string().pattern(new RegExp("^[a-zA-Z0-9]")).required(),
 });
 
-const registerSchema = Joi.object({
+const register_schema = Joi.object({
   first_name: Joi.string().required(),
   last_name: Joi.string().required(),
   email: Joi.string().email().required(),
@@ -19,9 +19,9 @@ const registerSchema = Joi.object({
 
 export default {
   async login(req: Request, res: Response) {
-    const { value, error } = loginSchema.validate(req.body);
+    const { value, error } = login_schema.validate(req.body);
     if (error) {
-      return res.status(400).json({ error: error.details[0].message });
+      return res.status(400).json({ message: error.details[0].message });
     }
 
     const { email, password } = value;
@@ -63,17 +63,17 @@ export default {
       });
     } catch (error) {
       console.log(error);
-      res.status(500).json({ error: "Something Went Wrong" });
+      res.status(500).json({ message: "Something Went Wrong" });
     }
   },
   async register(req: Request, res: Response) {
-    const { value, error } = registerSchema.validate(req.body);
+    const { value, error } = register_schema.validate(req.body);
     if (error) {
-      return res.status(400).json({ error: error.details[0].message });
+      return res.status(400).json({ message: error.details[0].message });
     }
 
     const { first_name, last_name, email, password } = value;
-
+    const salt_rounds = 10;
     try {
       const user = await prisma.user.findUnique({
         where: {
@@ -87,7 +87,7 @@ export default {
         });
       }
 
-      const hash_password = await bcrypt.hash(password, 10);
+      const hash_password = await bcrypt.hash(password, salt_rounds);
 
       const create_user = await prisma.user.create({
         data: {
@@ -112,7 +112,7 @@ export default {
     } catch (error) {
       console.log(error);
       res.status(500).json({
-        error: "Something Went Wrong",
+        message: "Something Went Wrong",
       });
     }
   },
