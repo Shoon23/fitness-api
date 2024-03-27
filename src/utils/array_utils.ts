@@ -1,4 +1,4 @@
-import { iWorkout } from "../controller/workout_controller";
+import { iWorkout } from "../types/workout_types";
 
 export function paginateResults(
   recommendations: iWorkout[],
@@ -27,17 +27,28 @@ export function paginateResults(
     workouts: paginatedResults,
   };
 }
-export function removeDuplicates(array1: any[], array2: any[]) {
-  // Compare lengths of the two arrays
-  if (array1.length > array2.length) {
-    // If array1 is longer, create a set from array2 and filter array1
-    const set = new Set(array2);
-    return array1.filter((item) => !set.has(item));
-  } else {
-    // If array2 is longer, create a set from array1 and filter array2
-    const set = new Set(array1);
-    return array2.filter((item) => !set.has(item));
-  }
+export function removeDuplicates(
+  array1: any[],
+  array2: any[],
+  propertyName: string
+) {
+  // Concatenate both arrays
+  const combinedArray = [...array1, ...array2];
+
+  // Create a Set to store unique property values
+  const set = new Set();
+
+  // Filter the combined array to keep only unique objects based on the specified property
+  const uniqueObjects = combinedArray.filter((item) => {
+    if (set.has(item[propertyName])) {
+      return false; // Filter out duplicates
+    } else {
+      set.add(item[propertyName]);
+      return true; // Keep unique items
+    }
+  });
+
+  return uniqueObjects;
 }
 
 export function shuffleArray(array: any[]) {
