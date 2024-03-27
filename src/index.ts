@@ -6,6 +6,7 @@ const app = express();
 
 const PORT = process.env.PORT || 8080;
 
+app.use(express.static("public/exercises_data/exercises_img"));
 app.use(express.json());
 
 app.use(auth_routes);

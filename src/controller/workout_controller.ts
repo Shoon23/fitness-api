@@ -1,6 +1,8 @@
 import { Request, Response } from "express";
 import fs from "fs";
 import Joi from "joi";
+import { paginateResults } from "../utils/paginate";
+import { shuffleArray } from "../utils/shuffle_array";
 
 const level_types = ["beginner", "intermediate", "expert"];
 
@@ -44,7 +46,12 @@ const filter_schema = Joi.object({
   muscles: Joi.array().items(Joi.string().valid(...muscle_groups)),
 }).min(1);
 
-type iWorkout = {
+const filter_pagination_schema = Joi.object({
+  page_size: Joi.number().integer().min(1).optional().default(10),
+  page_number: Joi.number().integer().min(1).optional().default(1),
+});
+
+export type iWorkout = {
   name: string;
   force: string;
   level: string;
@@ -67,25 +74,31 @@ interface iExercises {
 export default {
   async filter_workout(req: Request, res: Response) {
     const { value, error } = filter_schema.validate(req.body);
+
+    const { value: params } = filter_pagination_schema.validate(req.params);
     if (error) {
       return res.status(400).json({ message: error.details[0].message });
     }
     const { level, equipments, muscles } = value;
 
     try {
-      const data = fs.readFileSync("exercises_data/exercises.json", "utf8");
+      // reading the data
+      const data = fs.readFileSync(
+        "public/exercises_data/exercises.json",
+        "utf8"
+      );
 
       const exercises: iExercises = JSON.parse(data);
 
       const workouts = exercises.workouts;
 
+      // filtering
       const level_filter = workouts.filter(
         (workout) => workout.level === level
       );
 
       const equipment_filter = level_filter.filter((workouts) => {
         if (!workouts.equipment) return false;
-
         return equipments.some((equipment: string) =>
           workouts.equipment.includes(equipment)
         );
@@ -96,11 +109,27 @@ export default {
         );
       });
 
-      const recommendations = equipment_filter.concat(muscle_filter);
+      // remove duplicates
+      function removeDuplicates(array1: any[], array2: any[]) {
+        // Compare lengths of the two arrays
+        if (array1.length > array2.length) {
+          // If array1 is longer, create a set from array2 and filter array1
+          const set = new Set(array2);
+          return array1.filter((item) => !set.has(item));
+        } else {
+          // If array2 is longer, create a set from array1 and filter array2
+          const set = new Set(array1);
+          return array2.filter((item) => !set.has(item));
+        }
+      }
+      const recommendations = removeDuplicates(equipment_filter, muscle_filter);
 
-      return res.status(200).json({
-        workouts: recommendations,
-      });
+      // pagination
+      const shuffle_recommendations = shuffleArray(recommendations);
+
+      const paginatedResults = paginateResults(shuffle_recommendations, params);
+
+      return res.status(200).json(paginatedResults);
     } catch (error) {
       console.log(error);
 
