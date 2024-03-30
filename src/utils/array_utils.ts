@@ -1,6 +1,6 @@
 import { iWorkout } from "../types/workout_types";
 
-export function paginateResults(
+export function paginate_results(
   recommendations: iWorkout[],
   params: { page_size: number; page_number: number }
 ) {
@@ -27,7 +27,7 @@ export function paginateResults(
     workouts: paginatedResults,
   };
 }
-export function removeDuplicates(
+export function remove_duplicates(
   array1: any[],
   array2: any[],
   propertyName: string
@@ -51,7 +51,7 @@ export function removeDuplicates(
   return uniqueObjects;
 }
 
-export function shuffleArray(array: any[]) {
+export function shuffle_array(array: any[]) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [array[i], array[j]] = [array[j], array[i]];

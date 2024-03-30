@@ -2,9 +2,9 @@ import { Request, Response } from "express";
 import fs from "fs";
 import Joi from "joi";
 import {
-  paginateResults,
-  removeDuplicates,
-  shuffleArray,
+  paginate_results,
+  remove_duplicates,
+  shuffle_array,
 } from "../utils/array_utils";
 import { iExercises } from "../types/workout_types";
 import {
@@ -94,17 +94,17 @@ async function reccomend_workout(req: Request, res: Response) {
     const equipment_filter = filter_by_equipments(level_filter, equipments);
     const muscle_filter = filter_by_muscle(level_filter, muscles);
 
-    const recommendations = removeDuplicates(
+    const recommendations = remove_duplicates(
       equipment_filter,
       muscle_filter,
       "id"
     );
 
-    const shuffle_recommendations = shuffleArray(recommendations);
+    const shuffle_recommendations = shuffle_array(recommendations);
 
-    const paginatedResults = paginateResults(shuffle_recommendations, params);
+    const paginated_results = paginate_results(shuffle_recommendations, params);
 
-    return res.status(200).json(paginatedResults);
+    return res.status(200).json(paginated_results);
   } catch (error) {
     console.log(error);
 
@@ -121,7 +121,7 @@ const search_schema = Joi.object({
   search_key: Joi.string(),
 }).min(1);
 
-// add workout
+// search workout
 async function search_workouts(req: Request, res: Response) {
   const { value, error } = search_schema.validate(req.body);
 
@@ -154,17 +154,17 @@ async function search_workouts(req: Request, res: Response) {
 
     const search_key_muscle = filter_by_search_key(muscle_search, search_key);
 
-    const clean_results = removeDuplicates(
+    const clean_results = remove_duplicates(
       search_key_equipment,
       search_key_muscle,
       "id"
     );
 
-    const shuffle_results = shuffleArray(clean_results);
+    const shuffle_results = shuffle_array(clean_results);
 
-    const paginatedResults = paginateResults(shuffle_results, params);
+    const paginated_results = paginate_results(shuffle_results, params);
 
-    return res.status(200).json(paginatedResults);
+    return res.status(200).json(paginated_results);
   } catch (error) {
     console.log(error);
 
