@@ -8,4 +8,5 @@ workout_routes.post(
   workout_controller.reccomend_workout
 );
 workout_routes.post("/workouts", workout_controller.search_workouts);
+
 export default workout_routes;

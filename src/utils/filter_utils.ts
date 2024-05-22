@@ -1,11 +1,15 @@
 import { iWorkout } from "../types/workout_types";
 
-export function filter_by_level(workouts: iWorkout[], level: string) {
-  if (!level) {
+export function filter_by_level(workouts: iWorkout[], levels: string[]) {
+  if (!levels || levels.length <= 0) {
     return workouts;
   }
 
-  return workouts.filter((workout: iWorkout) => workout.level === level);
+  return workouts.filter((workouts) => {
+    return levels.some(
+      (level: string) => workouts.level.toLowerCase() === level.toLowerCase()
+    );
+  });
 }
 
 export function filter_by_equipments(
@@ -36,11 +40,20 @@ export function filter_by_muscle(workouts: iWorkout[], muscles: string[]) {
 }
 
 export function filter_by_search_key(workouts: iWorkout[], search_key: string) {
-  if (!search_key) {
-    return workouts;
-  }
-
+  const lowercase_searchKey = search_key.toLowerCase().replace(/\s+/g, ""); // Remove whitespace
   return workouts.filter(({ instructions, name }) => {
-    return name.includes(search_key) || instructions.includes(search_key);
+    const lowercaseName = name.toLowerCase().replace(/\s+/g, ""); // Remove whitespace
+    const firstInstruction = instructions.length > 0 ? instructions[0] : ""; // Check if instructions array is not empty
+    const lowercaseInstruction = firstInstruction
+      .toLowerCase()
+      .replace(/\s+/g, ""); // Remove whitespace
+
+    // Remove hyphens and whitespace from search_key
+    const searchKeyWithoutHyphens = lowercase_searchKey.replace(/-/g, "");
+
+    return (
+      lowercaseName.includes(searchKeyWithoutHyphens) ||
+      lowercaseInstruction.includes(searchKeyWithoutHyphens)
+    );
   });
 }

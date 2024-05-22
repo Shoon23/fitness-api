@@ -15,30 +15,61 @@ datasource db {
 
 model User {
   id           String        @id @default(uuid())
-  first_name   String        @db.VarChar(255)
-  last_name    String        @db.VarChar(255)
-  email        String        @unique @db.VarChar(255)
+  first_name   String
+  last_name    String
+  email        String        @unique @db.VarChar(191)
   password     String        @db.LongText()
   created_at   DateTime      @default(now())
   update_at    DateTime      @updatedAt
   workout_plan WorkoutPlan[]
+  preference   Preference?
+}
+
+model Preference {
+  id         String            @id @default(uuid())
+  user       User              @relation(fields: [user_id], references: [id])
+  user_id    String            @unique
+  levels     PreferLevel[]
+  muscles    PreferMuscle[]
+  equipments PreferEquipment[]
+}
+
+model PreferLevel {
+  id            String      @id @default(uuid())
+  preference    Preference? @relation(fields: [preference_id], references: [id])
+  name          String
+  preference_id String?
+}
+
+model PreferMuscle {
+  id            String      @id @default(uuid())
+  preference    Preference? @relation(fields: [preference_id], references: [id])
+  name          String
+  preference_id String?
+}
+
+model PreferEquipment {
+  id            String      @id @default(uuid())
+  preference    Preference? @relation(fields: [preference_id], references: [id])
+  name          String
+  preference_id String?
 }
 
 model WorkoutPlan {
-  id         String    @id @default(uuid())
-  user       User      @relation(fields: [user_id], references: [id])
-  user_id    String    @db.VarChar(255)
-  workouts   Workout[]
-  created_at DateTime  @default(now())
-  update_at  DateTime  @updatedAt
+  id         String       @id @default(uuid())
+  user       User         @relation(fields: [user_id], references: [id])
+  user_id    String
+  workouts   WorkoutDay[]
+  created_at DateTime     @default(now())
+  update_at  DateTime     @updatedAt
 }
 
-model Workout {
+model WorkoutDay {
   id              String      @id @default(uuid())
   day             Day
   exercises       Exercise[]
   workout         WorkoutPlan @relation(fields: [workout_plan_id], references: [id])
-  workout_plan_id String      @db.VarChar(255)
+  workout_plan_id String
 }
 
 enum Day {
@@ -52,10 +83,10 @@ enum Day {
 }
 
 model Exercise {
-  id         String  @id @default(uuid())
-  workout    Workout @relation(fields: [workout_id], references: [id])
-  workout_id String  @db.VarChar(255)
-  reps       Int
-  set        Int
-  details    String  @db.VarChar(255)
+  id             String     @id @default(uuid())
+  workout        WorkoutDay @relation(fields: [workout_day_id], references: [id])
+  workout_day_id String
+  reps           Int
+  sets           Int
+  detail_id      String
 }

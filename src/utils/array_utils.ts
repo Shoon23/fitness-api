@@ -13,8 +13,8 @@ export function paginate_results(
   const hasNextPage = endIndex < totalItems;
   const hasPrevPage = params.page_number > 1;
 
-  const nextPage = hasNextPage ? params.page_number + 1 : null;
-  const prevPage = hasPrevPage ? params.page_number - 1 : null;
+  // const nextPage = hasNextPage ? params.page_number + 1 : null;
+  // const prevPage = hasPrevPage ? params.page_number - 1 : null;
 
   const paginatedResults = recommendations.slice(startIndex, endIndex);
 
@@ -22,8 +22,8 @@ export function paginate_results(
     totalItems: totalItems,
     totalPages: totalPages,
     currentPage: params.page_number,
-    nextPage: nextPage,
-    prevPage: prevPage,
+    hasNextPage,
+    hasPrevPage,
     workouts: paginatedResults,
   };
 }

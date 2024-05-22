@@ -6,7 +6,7 @@ import {
   remove_duplicates,
   shuffle_array,
 } from "../utils/array_utils";
-import { iExercises } from "../types/workout_types";
+import { iExercises, iWorkout } from "../types/workout_types";
 import {
   filter_by_equipments,
   filter_by_level,
@@ -14,9 +14,9 @@ import {
   filter_by_search_key,
 } from "../utils/filter_utils";
 
-const level_types = ["beginner", "intermediate", "expert"];
+export const level_types = ["beginner", "intermediate", "expert"];
 
-const muscle_groups = [
+export const muscle_groups = [
   "quadriceps",
   "shoulders",
   "abdominals",
@@ -36,7 +36,7 @@ const muscle_groups = [
   "neck",
 ];
 
-const equipment_types = [
+export const equipment_types = [
   "barbell",
   "dumbbell",
   "calisthenics",
@@ -50,11 +50,17 @@ const equipment_types = [
   "e-z curl bar",
 ];
 
+const pagination_schema = Joi.object({
+  page_size: Joi.number().integer().min(1).optional().default(10),
+  page_number: Joi.number().integer().min(1).optional().default(1),
+  is_shuffle: Joi.boolean().optional().default(true),
+});
+
 // reccomend_workout
 
 const reccom_schema = Joi.object({
-  level: Joi.string()
-    .valid(...level_types)
+  levels: Joi.array()
+    .items(Joi.string().valid(...level_types))
     .required(),
   equipments: Joi.array()
     .items(Joi.string().valid(...equipment_types))
@@ -64,19 +70,15 @@ const reccom_schema = Joi.object({
     .required(),
 });
 
-const pagination_schema = Joi.object({
-  page_size: Joi.number().integer().min(1).optional().default(10),
-  page_number: Joi.number().integer().min(1).optional().default(1),
-});
-
 async function reccomend_workout(req: Request, res: Response) {
   const { value, error } = reccom_schema.validate(req.body);
 
-  const { value: params } = pagination_schema.validate(req.params);
+  const { value: query_string } = pagination_schema.validate(req.query);
+
   if (error) {
     return res.status(400).json({ message: error.details[0].message });
   }
-  const { level, equipments, muscles } = value;
+  const { levels, equipments, muscles } = value;
 
   try {
     // reading the data
@@ -90,19 +92,19 @@ async function reccomend_workout(req: Request, res: Response) {
     const workouts = exercises.workouts;
 
     // filtering
-    const level_filter = filter_by_level(workouts, level);
-    const equipment_filter = filter_by_equipments(level_filter, equipments);
+    const level_filter = filter_by_level(workouts, levels);
     const muscle_filter = filter_by_muscle(level_filter, muscles);
 
-    const recommendations = remove_duplicates(
-      equipment_filter,
-      muscle_filter,
-      "id"
+    const equipment_filter = filter_by_equipments(muscle_filter, equipments);
+
+    let shuffle_recommendations: iWorkout[] = [];
+    if (query_string?.is_shuffle) {
+      shuffle_recommendations = shuffle_array(equipment_filter);
+    }
+    const paginated_results = paginate_results(
+      query_string?.is_shuffle ? shuffle_recommendations : equipment_filter,
+      query_string
     );
-
-    const shuffle_recommendations = shuffle_array(recommendations);
-
-    const paginated_results = paginate_results(shuffle_recommendations, params);
 
     return res.status(200).json(paginated_results);
   } catch (error) {
@@ -115,21 +117,21 @@ async function reccomend_workout(req: Request, res: Response) {
 }
 
 const search_schema = Joi.object({
-  level: Joi.string().valid(...level_types),
+  levels: Joi.array().items(Joi.string().valid(...level_types)),
   equipments: Joi.array().items(Joi.string().valid(...equipment_types)),
   muscles: Joi.array().items(Joi.string().valid(...muscle_groups)),
-  search_key: Joi.string(),
-}).min(1);
+  search_key: Joi.string().allow(""),
+});
 
 // search workout
 async function search_workouts(req: Request, res: Response) {
   const { value, error } = search_schema.validate(req.body);
 
-  const { value: params } = pagination_schema.validate(req.params);
+  const { value: query_string } = pagination_schema.validate(req.query);
   if (error) {
     return res.status(400).json({ message: error.details[0].message });
   }
-  const { level, equipments, muscles, search_key } = value;
+  const { equipments, muscles, search_key } = value;
 
   try {
     // reading the data
@@ -137,32 +139,128 @@ async function search_workouts(req: Request, res: Response) {
       "public/exercises_data/exercises.json",
       "utf8"
     );
+
     const exercises: iExercises = JSON.parse(data);
 
     const workouts = exercises.workouts;
 
-    const level_search = filter_by_level(workouts, level);
+    if (
+      (!equipments || equipments.length === 0) &&
+      (!muscles || muscles.length === 0) &&
+      !search_key
+    ) {
+      const paginated_results = paginate_results(workouts, query_string);
 
-    const equipment_search = filter_by_equipments(level_search, equipments);
+      return res.status(200).json(paginated_results);
+    }
 
-    const muscle_search = filter_by_muscle(level_search, muscles);
+    // filter based on the equipments if its
+    let equipment_search: iWorkout[] = [];
+    if (equipments && equipments.length > 0) {
+      console.log("equipmnet filter");
+      equipment_search = filter_by_equipments(workouts, equipments);
+    }
 
-    const search_key_equipment = filter_by_search_key(
-      equipment_search,
-      search_key
-    );
+    // filter based on the muscles if its
 
-    const search_key_muscle = filter_by_search_key(muscle_search, search_key);
+    let muscle_search: iWorkout[] = [];
+    if (muscles && muscles.length > 0) {
+      console.log("muscle filter");
 
-    const clean_results = remove_duplicates(
-      search_key_equipment,
-      search_key_muscle,
-      "id"
-    );
+      muscle_search = filter_by_muscle(workouts, muscles);
+    }
 
-    const shuffle_results = shuffle_array(clean_results);
+    let search_key_equipment: any = [];
+    let search_key_muscle: any = [];
+    let search_key_result: any = [];
+    if (search_key) {
+      // filter based on equipment and search key
+      if (equipment_search.length > 0) {
+        search_key_equipment = filter_by_search_key(
+          equipment_search,
+          search_key
+        );
+      }
+      // filter based on muscles and search key
 
-    const paginated_results = paginate_results(shuffle_results, params);
+      if (muscle_search.length > 0) {
+        search_key_muscle = filter_by_search_key(muscle_search, search_key);
+      }
+      // search key only
+
+      if (equipment_search.length <= 0 && muscle_search.length <= 0) {
+        search_key_result = filter_by_search_key(workouts, search_key);
+      }
+    }
+    let clean_results: iWorkout[] = [];
+
+    // both muscle and equipment or  search key and muscle ,and equipment and search key
+    if (
+      (search_key_equipment.length > 0 && search_key_muscle.length > 0) ||
+      (equipment_search.length > 0 && muscle_search.length > 0)
+    ) {
+      const to_clean_equipment =
+        search_key_equipment.length > 0
+          ? search_key_equipment
+          : equipment_search;
+      const to_clean_muscle =
+        search_key_muscle > 0 ? search_key_muscle : muscle_search;
+
+      clean_results = remove_duplicates(
+        to_clean_equipment,
+        to_clean_muscle,
+        "id"
+      );
+    }
+
+    let final_filter: iWorkout[] = [];
+
+    // all filter options applied or only both equipmet and muscle
+    if (clean_results.length > 0) {
+      final_filter = clean_results;
+    }
+    // equipment filter only
+    else if (
+      equipment_search.length > 0 &&
+      muscle_search.length <= 0 &&
+      !search_key
+    ) {
+      final_filter = equipment_search;
+    }
+    // muscle filter only
+    else if (
+      muscle_search.length > 0 &&
+      equipment_search.length <= 0 &&
+      !search_key
+    ) {
+      final_filter = muscle_search;
+    }
+    // search key only
+    else if (
+      search_key &&
+      equipment_search.length <= 0 &&
+      muscle_search.length <= 0
+    ) {
+      final_filter = search_key_result;
+    }
+    // muscle and search key
+    else if (
+      muscle_search.length > 0 &&
+      search_key &&
+      equipment_search.length <= 0
+    ) {
+      final_filter = search_key_muscle;
+    }
+    // equipment and search key
+    else if (
+      equipment_search.length > 0 &&
+      search_key &&
+      muscle_search.length <= 0
+    ) {
+      final_filter = search_key_equipment;
+    }
+
+    const paginated_results = paginate_results(final_filter, query_string);
 
     return res.status(200).json(paginated_results);
   } catch (error) {

@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { verify_jwt } from "../utils/jwt_utils";
+import { verify_access_jwt } from "../utils/jwt_utils";
 import { JsonWebTokenError, TokenExpiredError } from "jsonwebtoken";
 
 export default (req: Request, res: Response, next: NextFunction) => {
@@ -11,9 +11,9 @@ export default (req: Request, res: Response, next: NextFunction) => {
       message: "Missing Access Token",
     });
   }
-
+  // preferences/update
   try {
-    verify_jwt(token);
+    verify_access_jwt(token);
     next();
   } catch (error) {
     if (
