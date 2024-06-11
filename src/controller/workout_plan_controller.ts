@@ -23,7 +23,6 @@ const assign_exercise_schema = Joi.object({
   sets: Joi.number().positive().min(1).required(),
   detail_id: Joi.string().required(),
 });
-
 async function assign_exercise(req: Request, res: Response) {
   const { value, error } = assign_exercise_schema.validate(req.body);
 
@@ -63,7 +62,6 @@ async function assign_exercise(req: Request, res: Response) {
 const get_exercise_schema = Joi.object({
   workout_day_id: Joi.string().required(),
 });
-
 async function get_exercise(req: Request, res: Response) {
   const { value, error } = get_exercise_schema.validate(req.params);
   if (error) {
@@ -136,7 +134,6 @@ const update_exercise_schema = Joi.object({
   sets: Joi.number().optional(),
   reps: Joi.number().optional(),
 }).or("sets", "reps");
-
 async function update_exercise(req: Request, res: Response) {
   const { value, error } = update_exercise_schema.validate(req.body);
 
@@ -159,9 +156,215 @@ async function update_exercise(req: Request, res: Response) {
   }
 }
 
+// create  workout plan
+const create_workout_plan_schema = Joi.object({
+  user_id: Joi.string().required(),
+  name: Joi.string().required(),
+});
+async function create_workout_plan(req: Request, res: Response) {
+  const { value, error } = create_workout_plan_schema.validate(req.body);
+
+  if (error) {
+    return res.status(400).json({ message: error.details[0].message });
+  }
+  try {
+    await prisma.$transaction(async (prisma) => {
+      // Create workout plan
+      const create_workout_plan = await prisma.workoutPlan.create({
+        data: {
+          user_id: value.user_id,
+          name: value.name,
+        },
+        select: {
+          id: true,
+          name: true,
+          is_active: true,
+        },
+      });
+      const workouts: any = [];
+      // create workout weeks
+      for (const day of Days) {
+        const workout = await prisma.workoutDay.create({
+          data: {
+            day: day as any,
+            workout_plan_id: create_workout_plan.id,
+          },
+          select: {
+            id: true,
+            day: true,
+          },
+        });
+
+        workouts.push(workout);
+      }
+
+      return res.status(201).json({
+        workout_plan: { ...create_workout_plan, workouts },
+      });
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Something went wrong" });
+  }
+}
+
+// delete workoutplan
+const delete_workout_plan_schema = Joi.object({
+  id: Joi.string().required(),
+});
+async function delete_workout_plan(req: Request, res: Response) {
+  const { value, error } = delete_workout_plan_schema.validate(req.params);
+
+  if (error) {
+    return res.status(400).json({ message: error.details[0].message });
+  }
+  try {
+    await prisma.workoutPlan.delete({
+      where: {
+        id: value.id,
+      },
+    });
+
+    res.status(204).send("success");
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Something went wrong" });
+  }
+}
+
+// update workoutplan
+const update_workout_plan_schema = Joi.object({
+  workout_plan_id: Joi.string().required(),
+  name: Joi.string().required(),
+});
+async function update_workout_plan(req: Request, res: Response) {
+  const { value, error } = update_workout_plan_schema.validate(req.body);
+
+  if (error) {
+    return res.status(400).json({ message: error.details[0].message });
+  }
+  try {
+    await prisma.workoutPlan.update({
+      where: {
+        id: value.workout_plan_id,
+      },
+      data: {
+        name: value.name,
+      },
+    });
+
+    res.status(200).send("success");
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Something went wrong" });
+  }
+}
+
+// get workoutplan
+const get_workout_plans_schema = Joi.object({
+  id: Joi.string().required(),
+});
+const pagination_schema = Joi.object({
+  page_size: Joi.number().integer().min(1).optional().default(10),
+  page_number: Joi.number().integer().min(0).optional().default(0),
+});
+
+async function get_workout_plans(req: Request, res: Response) {
+  // Validate params
+  const { value: paramsValue, error: paramsError } =
+    get_workout_plans_schema.validate(req.params);
+  if (paramsError) {
+    return res.status(400).json({ message: paramsError.details[0].message });
+  }
+
+  const { value: queryValue, error: queryError } = pagination_schema.validate(
+    req.query
+  );
+  if (queryError) {
+    return res.status(400).json({ message: queryError.details[0].message });
+  }
+
+  try {
+    const workout_plan = await prisma.workoutPlan.findMany({
+      take: queryValue.page_size,
+      skip: queryValue.page_number * queryValue.page_size,
+      where: {
+        user_id: paramsValue.id,
+      },
+      select: {
+        id: true,
+        name: true,
+        is_active: true,
+        workouts: {
+          select: {
+            id: true,
+            day: true,
+          },
+        },
+      },
+      orderBy: [
+        {
+          created_at: "desc",
+        },
+      ],
+    });
+
+    return res.status(200).json(workout_plan);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "Something went wrong" });
+  }
+}
+
+// activate workoutplan
+const active_workout_plan_schema = Joi.object({
+  new_wp_id: Joi.string().required(),
+  old_wp_id: Joi.string(),
+});
+async function active_workout_plan(req: Request, res: Response) {
+  const { value, error } = active_workout_plan_schema.validate(req.body);
+
+  if (error) {
+    return res.status(400).json({ message: error.details[0].message });
+  }
+  try {
+    await prisma.$transaction(async (prisma) => {
+      if (value?.old_wp_id) {
+        await prisma.workoutPlan.update({
+          where: {
+            id: value.old_wp_id,
+          },
+          data: {
+            is_active: false,
+          },
+        });
+      }
+
+      await prisma.workoutPlan.update({
+        where: {
+          id: value.new_wp_id,
+        },
+        data: {
+          is_active: true,
+        },
+      });
+
+      res.status(200).send("success");
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "Something went wrong" });
+  }
+}
+
 export default {
   assign_exercise,
   get_exercise,
   remove_exercise,
   update_exercise,
+  create_workout_plan,
+  update_workout_plan,
+  delete_workout_plan,
+  get_workout_plans,
+  active_workout_plan,
 };

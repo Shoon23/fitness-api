@@ -62,13 +62,15 @@ model WorkoutPlan {
   workouts   WorkoutDay[]
   created_at DateTime     @default(now())
   update_at  DateTime     @updatedAt
+  is_active  Boolean      @default(false)
+  name       String
 }
 
 model WorkoutDay {
   id              String      @id @default(uuid())
   day             Day
   exercises       Exercise[]
-  workout         WorkoutPlan @relation(fields: [workout_plan_id], references: [id])
+  workout         WorkoutPlan @relation(fields: [workout_plan_id], references: [id], onDelete: Cascade)
   workout_plan_id String
 }
 
@@ -84,7 +86,7 @@ enum Day {
 
 model Exercise {
   id             String     @id @default(uuid())
-  workout        WorkoutDay @relation(fields: [workout_day_id], references: [id])
+  workout        WorkoutDay @relation(fields: [workout_day_id], references: [id], onDelete: Cascade)
   workout_day_id String
   reps           Int
   sets           Int

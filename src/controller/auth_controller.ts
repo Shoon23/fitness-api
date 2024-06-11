@@ -48,17 +48,6 @@ async function login(req: Request, res: Response) {
         email: true,
         first_name: true,
         last_name: true,
-        workout_plan: {
-          select: {
-            id: true,
-            workouts: {
-              select: {
-                id: true,
-                day: true,
-              },
-            },
-          },
-        },
         preference: {
           select: {
             id: true,
@@ -85,6 +74,23 @@ async function login(req: Request, res: Response) {
       },
     });
 
+    const workout_plan = await prisma.workoutPlan.findFirst({
+      where: {
+        user_id: user?.id,
+        is_active: true,
+      },
+      select: {
+        id: true,
+        name: true,
+        workouts: {
+          select: {
+            id: true,
+            day: true,
+          },
+        },
+      },
+    });
+
     if (!user) {
       return res.status(401).json({
         message: "User Not Yet Registered",
@@ -102,18 +108,13 @@ async function login(req: Request, res: Response) {
     const access_token = generate_access_jwt(user.id);
     const refresh_token = generate_refresh_jwt(user.id);
 
-    const {
-      password: hash_password,
-      preference,
-      workout_plan,
-      ...other
-    } = user;
+    const { password: hash_password, preference, ...other } = user;
 
     res.status(200).json({
       ...other,
       access_token,
       refresh_token,
-      workout_plan: workout_plan[0],
+      workout_plan: workout_plan,
       preferences: {
         id: preference?.id,
         levels: preference?.levels.map((lvl) => lvl.name),
@@ -157,59 +158,31 @@ async function register(req: Request, res: Response) {
 
     const hash_password = await bcrypt.hash(password, salt_rounds);
 
-    await prisma.$transaction(async (prisma) => {
-      // creating user
-      const create_user = await prisma.user.create({
-        data: {
-          first_name,
-          last_name,
-          email,
-          password: hash_password,
-        },
-        select: {
-          id: true,
-          first_name: true,
-          last_name: true,
-          email: true,
-        },
-      });
+    // creating user
+    const create_user = await prisma.user.create({
+      data: {
+        first_name,
+        last_name,
+        email,
+        password: hash_password,
+      },
+      select: {
+        id: true,
+        first_name: true,
+        last_name: true,
+        email: true,
+      },
+    });
+    // gen token and send details
 
-      // Create workout plan
-      const create_workout_plan = await prisma.workoutPlan.create({
-        data: {
-          user_id: create_user.id,
-        },
-        select: {
-          id: true,
-        },
-      });
-      const workouts: any = [];
-      // create workout weeks
-      for (const day of Days) {
-        const workout = await prisma.workoutDay.create({
-          data: {
-            day: day as any,
-            workout_plan_id: create_workout_plan.id,
-          },
-          select: {
-            id: true,
-            day: true,
-          },
-        });
+    const access_token = generate_access_jwt(create_user.id);
+    const refresh_token = generate_refresh_jwt(create_user.id);
 
-        workouts.push(workout);
-      }
-      // gen token and send details
-
-      const access_token = generate_access_jwt(create_user.id);
-      const refresh_token = generate_refresh_jwt(create_user.id);
-
-      return res.status(201).json({
-        ...create_user,
-        access_token,
-        refresh_token,
-        workout_plan: { ...create_workout_plan, workouts },
-      });
+    return res.status(201).json({
+      ...create_user,
+      access_token,
+      refresh_token,
+      workout_plan: null,
     });
   } catch (error) {
     console.log(error);
@@ -332,17 +305,6 @@ async function refresh_token(req: Request, res: Response) {
         email: true,
         first_name: true,
         last_name: true,
-        workout_plan: {
-          select: {
-            id: true,
-            workouts: {
-              select: {
-                id: true,
-                day: true,
-              },
-            },
-          },
-        },
         preference: {
           select: {
             id: true,
@@ -373,13 +335,31 @@ async function refresh_token(req: Request, res: Response) {
       return res.status(404).json({ message: "User not found" });
     }
 
+    const workout_plan = await prisma.workoutPlan.findFirst({
+      where: {
+        user_id: user_info.id,
+        is_active: true,
+      },
+      select: {
+        id: true,
+        name: true,
+        is_active: true,
+        workouts: {
+          select: {
+            id: true,
+            day: true,
+          },
+        },
+      },
+    });
+
     const access_token = generate_access_jwt(user_info.id);
-    const { workout_plan, preference, ...rest } = user_info;
+    const { preference, ...rest } = user_info;
 
     res.status(200).json({
       ...rest,
       access_token,
-      workout_plan: workout_plan[0],
+      workout_plan: workout_plan,
       preferences: {
         id: preference?.id,
         levels: preference?.levels.map((lvl) => lvl.name),

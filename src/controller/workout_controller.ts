@@ -157,7 +157,6 @@ async function search_workouts(req: Request, res: Response) {
     // filter based on the equipments if its
     let equipment_search: iWorkout[] = [];
     if (equipments && equipments.length > 0) {
-      console.log("equipmnet filter");
       equipment_search = filter_by_equipments(workouts, equipments);
     }
 
@@ -165,8 +164,6 @@ async function search_workouts(req: Request, res: Response) {
 
     let muscle_search: iWorkout[] = [];
     if (muscles && muscles.length > 0) {
-      console.log("muscle filter");
-
       muscle_search = filter_by_muscle(workouts, muscles);
     }
 
