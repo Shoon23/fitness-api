@@ -9,7 +9,8 @@
     "start": "node --env-file .env dist/bundle.js",
     "dev": "nodemon --config nodemon.json",
     "prod": "npm run build:prod && npm run start",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "vercel-build": "npm run build:prod"
   },
   "keywords": [],
   "author": "",
