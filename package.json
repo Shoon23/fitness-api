@@ -5,8 +5,11 @@
   "main": "index.js",
   "scripts": {
     "build:dev": "webpack --config webpack.config.dev.js",
+    "build:prod": "webpack --config webpack.config.dev.js",
     "start": "node --env-file .env dist/bundle.js",
-    "dev": "nodemon --config nodemon.json"
+    "dev": "nodemon --config nodemon.json",
+    "prod": "npm run build:prod && npm run start",
+    "postinstall": "prisma generate"
   },
   "keywords": [],
   "author": "",

@@ -9,7 +9,7 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -18,7 +18,7 @@ model User {
   first_name   String
   last_name    String
   email        String        @unique @db.VarChar(191)
-  password     String        @db.LongText()
+  password     String
   created_at   DateTime      @default(now())
   update_at    DateTime      @updatedAt
   workout_plan WorkoutPlan[]
