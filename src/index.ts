@@ -13,6 +13,12 @@ app.use(cors());
 app.use(express.static("public/exercises_data/exercises_img"));
 app.use(express.json());
 
+app.get("/aso", (req, res) => {
+  res.json({
+    message: "workoing",
+  });
+});
+
 app.use(auth_routes);
 // app.use(verify_access);
 app.use(workout_routes);
