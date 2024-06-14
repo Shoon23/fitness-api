@@ -4,6 +4,7 @@ import workout_routes from "./routes/workout_routes";
 import workout_plan_routes from "./routes/workout_plan_routes";
 import verify_access from "./middleware/verify_access";
 import cors from "cors";
+import user_routes from "./routes/user_routes";
 const app = express();
 
 const PORT = process.env.PORT || 8080;
@@ -20,7 +21,8 @@ app.get("/aso", (req, res) => {
 });
 
 app.use(auth_routes);
-// app.use(verify_access);
+app.use(verify_access);
+app.use(user_routes);
 app.use(workout_routes);
 app.use(workout_plan_routes);
 
