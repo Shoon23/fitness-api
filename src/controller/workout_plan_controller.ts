@@ -319,7 +319,7 @@ async function get_workout_plans(req: Request, res: Response) {
 // activate workoutplan
 const active_workout_plan_schema = Joi.object({
   new_wp_id: Joi.string().required(),
-  old_wp_id: Joi.string(),
+  old_wp_id: Joi.string().allow(""),
 });
 async function active_workout_plan(req: Request, res: Response) {
   const { value, error } = active_workout_plan_schema.validate(req.body);

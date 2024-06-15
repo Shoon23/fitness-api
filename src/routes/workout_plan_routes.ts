@@ -21,7 +21,6 @@ workout_plan_routes.put(
 
 workout_plan_routes.put(
   "/workout_plan/activate",
-
   workout_plan_controller.active_workout_plan
 );
 
