@@ -3,7 +3,6 @@ import auth_controller from "../controller/auth_controller";
 import user_controller from "../controller/user_controller";
 const user_routes = Router();
 
-user_routes.post("/preferences", user_controller.create_preference);
 user_routes.put("/preferences/update", user_controller.update_preference);
 
 export default user_routes;
