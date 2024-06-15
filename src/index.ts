@@ -12,6 +12,8 @@ const PORT = process.env.PORT || 8080;
 app.use(cors());
 
 app.use(express.static("public/exercises_data/exercises_img"));
+app.use(express.static("public/info_img"));
+
 app.use(express.json());
 
 app.get("/aso", (req, res) => {
